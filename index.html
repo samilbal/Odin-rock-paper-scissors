@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let compWins = 0;
+        let playerWins = 0;
+
+        function computerPlay() {
+            let randomNumber = Math.floor(Math.random() * 3)
+
+            if (randomNumber === 0) {
+                computerMove = 'Rock'
+            } else if (randomNumber === 1) {
+                computerMove = 'Paper'
+            } else {
+                computerMove = 'Scissors'
+            }
+            console.log(computerMove)
+            return computerMove.toLowerCase()
+
+        }
+
+
+        function playerPlay() {
+            const playerMove = prompt("rock paper or scissors?")
+            console.log(playerMove)
+            return playerMove.toLowerCase()
+        }
+
+
+
+        function round(playerMove, computerMove) {
+
+
+            if (playerMove === computerMove) {
+                playerWins++
+                compWins++
+                return console.log("tie")
+            }
+            if (playerMove === 'rock') {
+                if (computerMove === 'paper') {
+                    compWins++
+                    return console.log('comp wins')
+                } else {
+                    playerWins++
+                    return console.log('player wins')
+                }
+            }
+            if (playerMove === 'paper') {
+                if (computerMove === 'rock') {
+                    playerWins++
+                    return console.log("player wins")
+                } else {
+                    compWins++
+                    return console.log("comp wins")
+                }
+            }
+
+            if (playerMove === 'scissors') {
+                if (computerMove === 'paper') {
+                    playerWins++
+                    return console.log("player wins")
+                } else {
+                    compWins++
+                    return console.log("comp wins")
+                }
+            }
+
+        }
+
+
+
+
+
+        function game() {
+
+            for (let i = 0; i < 5; i++) {
+                const computerMove = computerPlay()
+                const playerMove = playerPlay()
+                round(playerMove, computerMove)
+                console.log(`Player : ${playerWins}, Computer : ${compWins}`)
+            }
+        };
+
+        game();
+    </script>
+</body>
+
+</html>
