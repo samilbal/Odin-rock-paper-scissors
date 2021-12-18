@@ -9,9 +9,42 @@
 </head>
 
 <body>
+    <button id="btcRock" class='buton'>Rock!</button>
+    <button id="btcPaper" class='buton'>Paper!</button>
+    <button id="btcScs" class='buton'>Scissors!</button>
+    <div class="results">Results:</div>
     <script>
         let compWins = 0;
         let playerWins = 0;
+        const btcRock = document.getElementById("btcRock");
+        const btcPaper = document.getElementById("btcPaper");
+        const btcSCS = document.getElementById("btcScs");
+        let btnInput = '';
+        const results = document.querySelector('.results');
+
+        btcRock.addEventListener('click', function() {
+            btnInput = 'Rock';
+            return btnInput;
+        })
+        btcRock.addEventListener('click', function() {
+            game();
+        })
+
+        btcPaper.addEventListener('click', function() {
+            btnInput = 'Paper';
+            return btnInput;
+        })
+        btcPaper.addEventListener('click', function() {
+            game();
+        })
+
+        btcSCS.addEventListener('click', function() {
+            btnInput = 'Scissors';
+            return btnInput;
+        })
+        btcSCS.addEventListener('click', function() {
+            game();
+        })
 
         function computerPlay() {
             let randomNumber = Math.floor(Math.random() * 3)
@@ -30,7 +63,7 @@
 
 
         function playerPlay() {
-            const playerMove = prompt("rock paper or scissors?")
+            const playerMove = btnInput;
             console.log(playerMove)
             return playerMove.toLowerCase()
         }
@@ -77,20 +110,37 @@
         }
 
 
+        function anounce() {
+            if (playerWins === 5) {
+                alert(`THE PLAYER WINS!`)
+                results.textContent = 'Results: '
+                playerWins = 0;
+                compWins = 0;
 
+            } else if (compWins === 5) {
+                alert('THE COMPUTER WINS!')
+                results.textContent = 'Results: '
+                playerWins = 0;
+                compWins = 0;
+            }
+
+
+        }
 
 
         function game() {
 
-            for (let i = 0; i < 5; i++) {
-                const computerMove = computerPlay()
-                const playerMove = playerPlay()
-                round(playerMove, computerMove)
-                console.log(`Player : ${playerWins}, Computer : ${compWins}`)
-            }
-        };
 
-        game();
+            const computerMove = computerPlay()
+            const playerMove = playerPlay()
+            round(playerMove, computerMove)
+            console.log(`Player : ${playerWins}, Computer : ${compWins}`)
+            let paras = document.createElement('p');
+            paras.textContent += `Player : ${playerWins}, Computer : ${compWins}`
+            results.appendChild(paras);
+            anounce();
+
+        };
     </script>
 </body>
 
